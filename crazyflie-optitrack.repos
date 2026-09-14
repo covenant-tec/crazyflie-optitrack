@@ -1,0 +1,17 @@
+repositories:
+  src/crazybridge:
+    type: git
+    url: https://github.com/covenant-tec/crazybridge.git
+    version: main
+  src/crazybridge_interfaces:
+    type: git
+    url: https://github.com/covenant-tec/crazybridge_interfaces.git
+    version: main
+  src/optitrack_client:
+    type: git
+    url: https://github.com/covenant-tec/optitrack_client.git
+    version: master
+  firmware/crazyflie-firmware:
+    type: git
+    url: https://github.com/covenant-tec/crazyflie-firmware.git
+    version: master
