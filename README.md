@@ -35,6 +35,24 @@ mkdir -p src firmware
 vcs import . < crazyflie-optitrack.repos
 ```
 
+## Build & Workspace Structure
+
+The `colcon build` command should be executed from within the `src` directory for this architecture. Following compilation, the `install` and `build` directories will reside inside `src`.
+
+## Scripts
+
+### [source_all.sh](source_all.sh)
+
+This script automates the environment setup required to run the workspace. It detects and sources the installed ROS 2 distribution (prioritizing Jazzy), sources the local workspace (`src/install/setup.bash`), and activates a Python virtual environment if one is found in the directory hierarchy or provided as an argument.
+
+```bash
+# Source automatically
+source source_all.sh
+
+# Source with explicit virtual environment
+source source_all.sh /path/to/.venv
+```
+
 ## Updating the Workspace
 
 To pull the latest changes across all repositories:
