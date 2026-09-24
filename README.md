@@ -37,13 +37,27 @@ vcs import . < crazyflie-optitrack.repos
 
 ## Build & Workspace Structure
 
-The `colcon build` command should be executed from within the `src` directory for this architecture. Following compilation, the `install` and `build` directories will reside inside `src`.
+To prevent dependency conflicts, ensure the ROS 2 distribution and the Python virtual environment are sourced before compiling the workspace.
+
+The `colcon build` command must be executed from within the `src` directory for this architecture. Following compilation, the `install` and `build` directories will reside inside `src`.
+
+```bash
+# 1. Source ROS 2
+source /opt/ros/jazzy/setup.bash
+
+# 2. Activate the virtual environment
+source .venv/bin/activate
+
+# 3. Navigate to the source directory and build
+cd src
+colcon build --symlink-install
+```
 
 ## Scripts
 
 ### [source_all.sh](source_all.sh)
 
-This script automates the environment setup required to run the workspace. It detects and sources the installed ROS 2 distribution (prioritizing Jazzy), sources the local workspace (`src/install/setup.bash`), and activates a Python virtual environment if one is found in the directory hierarchy or provided as an argument.
+Use this script to quickly initialize your terminal session **after** the workspace has been successfully compiled. It automates the environment setup by sourcing the installed ROS 2 distribution (prioritizing Jazzy), the compiled local workspace (`src/install/setup.bash`), and a Python virtual environment (if found in the directory hierarchy or provided as an argument).
 
 ```bash
 # Source automatically
