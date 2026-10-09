@@ -1,0 +1,7 @@
+colcon-common-extensions
+cflib
+rerun-sdk
+textual
+numpy
+scipy
+matplotlib

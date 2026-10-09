@@ -35,11 +35,20 @@ mkdir -p src firmware
 vcs import . < crazyflie-optitrack.repos
 ```
 
+Create and activate a Python virtual environment with system site packages enabled to retain access to ROS 2 core packages, then install workspace dependencies.
+
+```bash
+python3 -m venv --system-site-packages .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
 ## Build & Workspace Structure
 
-To prevent dependency conflicts, ensure the ROS 2 distribution and the Python virtual environment are sourced before compiling the workspace.
+To prevent dependency conflicts, ensure both the ROS 2 distribution and the Python virtual environment are sourced before compiling the workspace.
 
-The `colcon build` command must be executed from within the `src` directory for this architecture. Following compilation, the `install` and `build` directories will reside inside `src`.
+The build must be executed from within the `src` directory using `python -m colcon build`. Invoking colcon through Python guarantees that the compiler uses the active virtual environment interpreter and its resolved dependencies, preventing PATH and host distribution conflicts. Following compilation, the `install` and `build` directories will reside inside `src`.
 
 ```bash
 # 1. Source ROS 2
@@ -50,7 +59,7 @@ source .venv/bin/activate
 
 # 3. Navigate to the source directory and build
 cd src
-colcon build --symlink-install
+python -m colcon build --symlink-install
 ```
 
 ## Scripts
